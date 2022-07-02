@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../styles/style_all.css">
+    <title>Antoine Meyer</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/index.html">🧑‍💻 Antoine Meyer</a></li>
+            <li><a href="/pages/game_of_life.html">⬛ Jeu De La Vie</a></li>
+            <li><a class="active" href="/pages/sam_the_fireman.html">🔥 Sam Le Pompier (Markov)</a></li>
+            <li><a href="/pages/tennis_AI_project.html">🎾 Projet IA Tennis (Q-learning & 3D)</a></li>
+        </ul>
+    </nav>
+
+    <div class="corps_de_la_page">
+        <h1>🔥 Chef d’œuvre : terminé. ✔️</h1>
+        <img class="gif" src="/img/sam_the_fireman/Gif_MatPompier.gif">
+        <h3>🔥 Objectifs du chef d’œuvre</h3>
+        <p>
+            Mettre en œuvre tout ce qui a été vu sur la SDL, en créant un mini jeu.
+            Nous proposons un jeu totalement différent (validé par l'enseignant).
+            Ce n'est qu'un exercice et il ne faudrait pas lui accorder plus d'une journée : nous avons passé 2 jours sur
+            cet exercice.
+            Notre jeu mets en œuvre une chaîne de Markov afin de gérer le comportement d'au moins un élément du jeu (le
+            feu).
+        </p>
+        <h3>🔥 But du jeu</h3>
+        <p>
+            Empêcher la propagation du feu en éteignant les flammes avec vos seaux d'eau.
+        </p>
+        <h3>🔥 Chaîne de Markov</h3>
+        <p>Notre chaîne de Markov se déploie sur le comportement du feu.</p>
+        <p>Il y a 5 états pour un feu :</p>
+        <p>➤ s'éteint</p>
+        <p>➤ étincelle</p>
+        <p>➤ petit feu</p>
+        <p>➤ feu fort</p>
+        <p>➤ se propage</p>
+        <p>Un tableau de Markov pour l'évolution du feu peut être comme ceci :</p>
+        <img class="gif" src="/img/sam_the_fireman/CE_TableauMarkov.png">
+        <p>
+            Le tableau dans le programme est généré depuis le fichier texte markov.txt.
+        </p>
+        <p>
+            Détaillons une ligne de ce tableau. Prenons la ligne Étincelle (1).
+            Elle modélises qu'une Étincelle (1) à 30% de chance de rester une Étincelle (1) et
+            70% de devenir un Petit feu (2). Nous avons remplis ce tableau afin d'approcher une
+            forme de comportement réel tout en donnant du challenge aux joueurs.
+        </p>
+        <h3>🔥 S'éteindre (0) et Se propage (4)</h3>
+        <p>
+            Un feu peut être éteint (0) et existé ! Il modélise un départ de feu soudain.
+            L'état Se propage (4) modélise la multiplication du feu. Dans cet état, le feu
+            a une probabilité uniforme de se propager en croix autour de lui. Il est effectivement
+            créé s'il n'y a pas déjà un feu ou une source d'eau !
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/feuavantspread.png">
+        <p>→</p>
+        <img class="gif" src="/img/sam_the_fireman/feuapresspread.png">
+        <h3>🔥 Organisation de l'équipe</h3>
+        <p>
+            Nous avons travaillé avec Git et l'utilisation des branches. Nous avons rapidement
+            séparé le travail comme suit :
+        </p>
+        <p>➤ Taha Belkhiri : toute la partie visuelle (carte, assets, menu, dessins, implémentations) et les animations.
+        </p>
+        <p>➤ Marc Beret : structure et mécanique du feu; chaîne de Markov; propagation du feu.</p>
+        <p>➤ Antoine Meyer : logique du personnage (collisions); gestion du clic et de ses actions possibles.</p>
+        <img class="gif" src="/img/sam_the_fireman/CE_ArchiGit_Groupe.png" alt="">
+        <p>→</p>
+        <img class="gif" src="/img/sam_the_fireman/CE_orgaTravail.png" alt=""><br>
+
+        <h3>🔥 Modélisation</h3>
+        <p>
+            Chaque élément du jeu doit être modélisé. Voilà nos modélisations (non exhaustives) de nos
+            principaux éléments :
+        </p>
+        <p>
+            ➤ le pompier : position (x,y); nombre de seaux d'eau courant; vitesse de déplacement; nombre de points
+            de vie courant; dernière fois qu'il a touché le feu.
+        </p>
+        <p>
+            ➤ le feu : position (x,y); état (étincelle, petit feu, etc).
+        </p>
+        <p>
+            ➤ liste chaînée des feux courants : structure de feu; pointeur sur chainon suivant.
+        </p>
+        <p>
+            ➤ la carte : générée depuis le fichier map.txt; dimension (20 cases par 20).
+        </p>
+
+        <h3>🔥 Animation</h3>
+        <p>➤ le pompier a 3 animations : Se déplace, Immobile et Vient de subir des brûlures.</p>
+        <p>➤ le feu a différentes tailles suivant son état.</p>
+        <p>➤ les points de vie ont une petite animation de mouvement.</p>
+
+        <h3>🔥 Règles</h3>
+        <p>
+            ➤ éteindre le feu : Mat le pompier ne peut éteindre le feu que dans un rayon de
+            une case autour de lui. Si jamais le joueur clique sur une case non accessible, il
+            perd un seau d’eau inutilement donc attention !
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/eteintproche.png">
+        <img class="gif" src="/img/sam_the_fireman/eteintloin.png">
+        <p>
+            ➤ remplir les seaux : Quand Mat se trouve à une case de portée d’une
+            source d’eau il peut remplir ses seaux en cliquant sur l’eau.
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/rechargeeau.png">
+        <img class="gif" src="/img/sam_the_fireman/fullEau.png">
+        <img class="gif" src="/img/sam_the_fireman/fullEaunon.png">
+        <p>
+            ➤ vie du pompier : Mat le pompier dispose de 3 point de vie. Il en perd
+            un à chaque fois qu’il entre en collision avec un feu.
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/Fullvie.png">
+        <img class="gif" src="/img/sam_the_fireman/Fullvienon.png">
+        <p>
+            ➤ collisions : Mat le pompier ne peut pas traverser des arbres ou marcher sur l’eau.
+            Il ne peut pas non plus sortir de la carte.
+        </p>
+        <p>
+            ➤ prochain feu : Un timer annonce la prochaine évolution des feux (vague de propagation
+            du feu, augmentation du feu, diminution du feu, etc).
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/feusuivant.png">
+        <p>➤ score : Chaque feu éteint correspond à un point.</p>
+        <img class="gif" src="/img/sam_the_fireman/score.png">
+        <p>
+            ➤ conditions de victoire : Mat gagne quand il a éteint tous les feux.
+            Le score est le nombre de feux éteints : il doit être le plus petit possible.
+            Nous n'avons pas eu le temps de faire un écran de victoire..
+        </p>
+        <p>
+            ➤ conditions de défaite : Le joueur perd si Mat n'a plus aucuns points de vie.
+            Il arrive alors sur un écran de défaite et peut choisir de recommencer une partie
+            ou de quitter le jeu.
+        </p>
+        <img class="gif" src="/img/sam_the_fireman/perdu.png" width="1000" height="600">
+        <p style="text-align: right;">🔥 Tous les feux sont éteints.</p>
+
+    </div>
+
+</body>
+
+</html>

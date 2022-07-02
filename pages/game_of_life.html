@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../styles/style_all.css">
+    <title>Antoine Meyer</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/index.html">🧑‍💻 Antoine Meyer</a></li>
+            <li><a class="active" href="/pages/game_of_life.html">⬛ Jeu De La Vie</a></li>
+            <li><a href="/pages/sam_the_fireman.html">🔥 Sam Le Pompier (Markov)</a></li>
+            <li><a href="/pages/tennis_AI_project.html">🎾 Projet IA Tennis (Q-learning & 3D)</a></li>
+        </ul>
+    </nav>
+
+    <div class="corps_de_la_page">
+        <h1>⬛ Jeu de la vie : terminé. ✔️</h1>
+
+        <img class="gif" src="/img/game_of_life/Git_GameOfLife.gif" width="1000" height="500">
+
+        <h3>⬛ Forme de monde</h3>
+        <p>Torique</p>
+
+        <h3>⬛ Règles d'évolution</h3>
+        <p>Base de John Horton Conway</p>
+
+        <h3>⬛ Organisation</h3>
+        <p>
+            Tous les membres du groupe ont fait la base du jeu de la vie (affichage de base, logique, etc)
+            et nous avons ensuite prit le meilleur de chacun pour la version finale :
+        </p>
+        <p>➤ Taha a fait la grille torique, la détection des cycles et des états stables.</p>
+        <p>➤ Marc a fait la sauvegarde dans un fichier. </p>
+        <p>
+            ➤ Antoine a fait le chargement d'un fichier et le redimensionnement de la grille en cours de jeu
+            (fonctionnalité non présente dans le jeu final car pleine écran).
+        </p>
+
+        <h3>⬛ Fonctionnalités réalisées</h3>
+        <p>➤ configuration initiale entrée par l'utilisateur à la souris</p>
+        <p>➤ possibilité de sauvegarder / charger une configuration</p>
+        <img class="gif" src="/img/game_of_life/CE_niveau.png" width="300" height="300">
+        <img class="gif" src="/img/game_of_life/CE_Charge.png" width="500" height="300">
+        <p>➤ flèches du clavier pour accélérer / freiner l'animation</p>
+        <p>➤ modification aisée des règles de transition</p>
+        <p>➤ détection de "l'état est stable" qui affiche un message</p>
+        <img class="gif" src="/img/game_of_life/CE_GameOfLife_GameStable.png" width="500" height="300">
+        <p>➤ [optionnel] détection de cycle (si taille de grille inf. à 7)</p>
+
+        <h3>⬛ Comment jouer</h3>
+        <p>↑ & ↓ : choix taille grille</p>
+        <img class="gif" src="/img/game_of_life/CE_GameOfLife_Menu_1.png" width="500" height="300">
+        <img class="gif" src="/img/game_of_life/CE_GameOfLife_Menu_2.png" width="500" height="300">
+        <p>→ : avance l'animation</p>
+        <p>s : sauvegarde grille dans map.txt</p>
+        <p>x : quitte le jeu</p>
+
+        <h3>⬛ Comment lancer le programme</h3>
+        <p>➤ classique : ./run </p>
+        <p>
+            Avec le mode classique on passe par le menu où on peut choisir la taille de la grille de jeu. La grille
+            commence totalement vide.
+        </p>
+        <p>➤ chargement : ./run --tailleGrille --fichier</p>
+        <p>
+            Avec ce mode, on se retrouve directement face au jeu. La grille a la taille --tailleGrille et est remplie
+            avec le fichier --fichier. La taille --tailleGrille et la taille de la grille dans --tailleGrille est
+            vérifiée.
+        </p>
+
+        <p style="text-align: right;">⬛ Memento Mori.</p>
+
+    </div>
+
+</body>
+
+</html>
